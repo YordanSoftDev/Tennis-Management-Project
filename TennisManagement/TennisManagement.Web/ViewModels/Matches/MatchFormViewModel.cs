@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TennisManagement.Web.Application.Validations;
 using TennisManagement.Web.Models.Matches.MatchEnumerations;
-using TennisManagement.Web.Models.Roster;
 
 namespace TennisManagement.Web.ViewModels.Matches
 {

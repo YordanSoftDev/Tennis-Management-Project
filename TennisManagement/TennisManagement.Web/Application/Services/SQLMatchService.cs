@@ -1,10 +1,12 @@
-﻿using TennisManagement.Web.Application.Interfaces;
-using TennisManagement.Web.Application.Interfaces.Persistance;
-using TennisManagement.Web.ViewModels.Matches;
-
-namespace TennisManagement.Web.Application.Services
+﻿namespace TennisManagement.Web.Application.Services
 {
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
+    using TennisManagement.Web.Application.Interfaces;
+    using TennisManagement.Web.Application.Interfaces.Persistance;
+    using TennisManagement.Web.Models.Matches;
+    using TennisManagement.Web.ViewModels.Matches;
 
     public class SQLMatchService : IMatchService
     {
@@ -20,31 +22,69 @@ namespace TennisManagement.Web.Application.Services
 
         public async Task<int> CreateMatchAsync(MatchFormViewModel model)
         {
-            throw new NotImplementedException();
+            Match newMatch = this.mapper.Map<Match>(model);
+
+            this.context.Matches.Add(newMatch);
+            await this.context.SaveChangesAsync();
+
+            return newMatch.Id;
         }
 
-        public async Task<bool> UpdateMatchAsync(int ID, MatchFormViewModel model)
+        public async Task<bool> UpdateMatchAsync(int id, MatchFormViewModel model)
         {
-            throw new NotImplementedException();
+            Match? matchToUpdate = await this.context.Matches.FindAsync(id);
+
+            if(matchToUpdate == null)
+            {
+                return false;
+            }
+
+            this.mapper.Map(model, matchToUpdate);
+
+            await this.context.SaveChangesAsync();
+
+            return true;
         }
 
-        public async Task<bool> DeleteMatchAsync(int ID)
+        public async Task<bool> DeleteMatchAsync(int id)
         {
-            throw new NotImplementedException();
+            int rowsAffected = await this.context.Matches
+                .Where(m => m.Id == id)
+                .ExecuteDeleteAsync();
+
+            return rowsAffected > 0;
         }
 
         public async Task<MatchDetailsViewModel?> GetMatchDetailsByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.context.Matches
+                .Where(m => m.Id == id)
+                .ProjectTo<MatchDetailsViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
         }
         public async Task<MatchFormViewModel?> GetMatchForEditByAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.context.Matches
+                .AsNoTracking()
+                .Where(m => m.Id == id)
+                .ProjectTo<MatchFormViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync()
+        public async Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync()
         {
-            throw new NotImplementedException();
+            IEnumerable<Match> matches = await this.context
+                .Matches
+                .Include(m => m.Venue)
+                .Include(m => m.Tournament)
+                .Include(m => m.FirstPlayer)
+                .Include(m => m.SecondPlayer)
+                .Include(m => m.Winner)
+                .OrderBy(m => m.DateTime)
+                .ThenBy(m => m.Id)
+                .ToListAsync();
+
+            return this.mapper.Map<IEnumerable<MatchInfoViewModel>>(matches);
         }
     }
 }

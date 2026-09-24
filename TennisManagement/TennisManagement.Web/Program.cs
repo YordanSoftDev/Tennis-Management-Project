@@ -1,10 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using TennisManagement.Web.Infrastructure.Persistance;
+
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<UniversityContext>(options =>
-               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+string? connectionString = builder.Configuration
+    .GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'DefaultConnection' was not found or is empty in configuration.");
+}
+
+builder.Services.AddDbContext<TennisManagementContext>(options =>
+               options.UseSqlServer(connectionString));
+
 WebApplication? app = builder.Build();
 
 // Configure the HTTP request pipeline.
