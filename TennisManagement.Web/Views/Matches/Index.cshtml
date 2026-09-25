@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TennisManagement.Web.ViewModels.Matches
+                    .MatchInfoViewModel>
+@{
+    ViewData["Title"] = "Tennis Matches";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-trophy"></i> Tennis Matches</h2>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Create New Match
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center" role="alert">
+        No matches scheduled yet. Click <strong>Create New Match</strong> above to add one.
+    </div>
+}
+else
+{
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle bg-white mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Date & Time</th>
+                    <th scope="col">Tournament</th>
+                    <th scope="col">Players</th>
+                    <th scope="col">Venue</th>
+                    <th scope="col">Winner</th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var match in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@match.DateTime.ToString("MMM dd, yyyy")</strong>
+                            <br />
+                            <small class="text-muted">@match.DateTime.ToString("HH:mm")</small>
+                        </td>
+                        <td>
+                            <span class="badge bg-secondary">@(match.TournamentName ?? "N/A")</span>
+                        </td>
+                        <td>
+                            <strong>@match.FirstPlayerFullName</strong> 
+                            <span class="text-muted">vs</span> 
+                            <strong>@match.SecondPlayerFullName</strong>
+                        </td>
+                        <td>@(match.VenueName ?? "N/A")</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(match.WinnerFullName))
+                            {
+                                <span class="badge bg-success"><i class="bi bi-award"></i> @match.WinnerFullName</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-light text-dark border">Pending</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <a asp-action="Details" asp-route-id="@match.Id" class="btn btn-sm btn-outline-info me-1">
+                                Details
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@match.Id" class="btn btn-sm btn-outline-warning me-1">
+                                Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@match.Id" class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

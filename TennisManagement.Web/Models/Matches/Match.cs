@@ -30,7 +30,6 @@ namespace TennisManagement.Web.Models.Matches
 
         //The venue(country and the tennis club or a stadium)
         //where the match will be played or was played
-
         public int VenueId { get; set; }
 
         public virtual Venue Venue { get; set; } = null!;

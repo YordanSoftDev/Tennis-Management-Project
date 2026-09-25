@@ -20,9 +20,9 @@
             this.mapper = mapper;
         }
 
-        public async Task<int> CreateMatchAsync(MatchFormViewModel model)
+        public async Task<int> CreateMatchAsync(MatchFormViewModel matchForm)
         {
-            Match newMatch = this.mapper.Map<Match>(model);
+            Match newMatch = this.mapper.Map<Match>(matchForm);
 
             this.context.Matches.Add(newMatch);
             await this.context.SaveChangesAsync();
@@ -30,7 +30,7 @@
             return newMatch.Id;
         }
 
-        public async Task<bool> UpdateMatchAsync(int id, MatchFormViewModel model)
+        public async Task<bool> UpdateMatchAsync(int id, MatchFormViewModel matchForm)
         {
             Match? matchToUpdate = await this.context.Matches.FindAsync(id);
 
@@ -39,7 +39,7 @@
                 return false;
             }
 
-            this.mapper.Map(model, matchToUpdate);
+            this.mapper.Map(matchForm, matchToUpdate);
 
             await this.context.SaveChangesAsync();
 
@@ -62,7 +62,7 @@
                 .ProjectTo<MatchDetailsViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
         }
-        public async Task<MatchFormViewModel?> GetMatchForEditByAsync(int id)
+        public async Task<MatchFormViewModel?> GetMatchForEditByIdAsync(int id)
         {
             return await this.context.Matches
                 .AsNoTracking()

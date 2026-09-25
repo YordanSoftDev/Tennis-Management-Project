@@ -1,10 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using TennisManagement.Web.Application.Interfaces;
+using TennisManagement.Web.Application.Interfaces.Persistance;
+using TennisManagement.Web.Application.Services;
 using TennisManagement.Web.Infrastructure.Persistance;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(cfg =>
+    cfg.AddMaps(typeof(SQLMatchService).Assembly));
+
+builder.Services.AddScoped<IMatchService, SQLMatchService>();
+builder.Services.AddScoped<ITennisManagementContext, TennisManagementContext>();
 
 string? connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");

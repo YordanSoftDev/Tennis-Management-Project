@@ -5,7 +5,6 @@
     public interface ITennisManagementContext
     {
         DbSet<Match> Matches { get; }
-
         Task<int> SaveChangesAsync(
             CancellationToken cancellationToken = default);
     }
