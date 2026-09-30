@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using TennisManagement.Web.Application.Interfaces;
+using TennisManagement.Web.Application.Interfaces.Matches;
+using TennisManagement.Web.Application.Interfaces.Roster;
 using TennisManagement.Web.Application.Interfaces.Persistance;
-using TennisManagement.Web.Application.Services;
+using TennisManagement.Web.Application.Services.Matches;
+using TennisManagement.Web.Application.Services.Roster;
 using TennisManagement.Web.Infrastructure.Persistance;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,7 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddMaps(typeof(SQLMatchService).Assembly));
 
 builder.Services.AddScoped<IMatchService, SQLMatchService>();
-builder.Services.AddScoped<ITennisManagementContext, TennisManagementContext>();
+builder.Services.AddScoped<IPlayerService, SQLPlayerService>();
 
 string? connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");
@@ -22,8 +24,8 @@ if (string.IsNullOrWhiteSpace(connectionString))
     throw new InvalidOperationException("Connection string 'DefaultConnection' was not found or is empty in configuration.");
 }
 
-builder.Services.AddDbContext<TennisManagementContext>(options =>
-               options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ITennisManagementContext, TennisManagementContext>(options =>
+    options.UseSqlServer(connectionString));
 
 WebApplication? app = builder.Build();
 

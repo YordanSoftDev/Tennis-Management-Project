@@ -1,5 +1,6 @@
 ﻿namespace TennisManagement.Web.Models.Roster
 {
+    using TennisManagement.Web.Models.Country;
     public class Player
     {
         public int Id { get; set; }
@@ -10,16 +11,18 @@
 
         public required int Age { get; set; }
 
-        //example 170 lbs (77kg)
+        //example value 170 lbs/(77kg)
         public required string Weight { get; set; }
 
-        //example 6'3" (191cm)
+        //example value 6'3"/(191cm)
         public required string Height { get; set; }
 
-        public required string Country { get; set; }
+        public required int CountryId { get; set; } 
+
+        public Country Country { get; set; } = null!;
 
         public required string Birthplace { get; set; }
 
-        public required string Coach { get; set; }
+        public ICollection<Coach> Coaches { get; set; } = new List<Coach>();
     }
 }

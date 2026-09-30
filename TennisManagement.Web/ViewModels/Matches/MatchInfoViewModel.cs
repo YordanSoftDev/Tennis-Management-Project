@@ -22,17 +22,14 @@ namespace TennisManagement.Web.ViewModels.Matches
 
         public MatchStatus MatchStatus { get; set; }
 
-        // Flattened Venue Information
         public int VenueId { get; set; }
 
         public string VenueName { get; set; } = string.Empty;
 
-        // Flattened Tournament Information
         public int TournamentId { get; set; }
 
         public string TournamentName { get; set; } = string.Empty;
 
-        // Flattened Player Information
         public int FirstPlayerId { get; set; }
 
         public string FirstPlayerFullName { get; set; } = string.Empty;
@@ -45,7 +42,6 @@ namespace TennisManagement.Web.ViewModels.Matches
 
         public string? WinnerFullName { get; set; }
 
-        // Computed helper property for UI display
         public bool IsCompleted => this.MatchStatus == MatchStatus.Completed;
     }
 }

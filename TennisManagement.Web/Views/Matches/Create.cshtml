@@ -21,12 +21,16 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label asp-for="FirstPlayerId" class="form-label fw-semibold"></label>
-                                <input asp-for="FirstPlayerId" class="form-control" type="number" placeholder="Enter First Player ID" />
+                                <select asp-for="FirstPlayerId" asp-items="Model.Players" id="firstPlayerSelect" class="form-select">
+                                    <option value="">-- Select First Player --</option>
+                                </select>
                                 <span asp-validation-for="FirstPlayerId" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
                                 <label asp-for="SecondPlayerId" class="form-label fw-semibold"></label>
-                                <input asp-for="SecondPlayerId" class="form-control" type="number" placeholder="Enter Second Player ID" />
+                                <select asp-for="SecondPlayerId" asp-items="Model.Players" id="secondPlayerSelect" class="form-select">
+                                    <option value="">-- Select Second Player --</option>
+                                </select>
                                 <span asp-validation-for="SecondPlayerId" class="text-danger"></span>
                             </div>
                         </div>
@@ -75,12 +79,16 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-4">
                                 <label asp-for="TournamentId" class="form-label fw-semibold"></label>
-                                <input asp-for="TournamentId" class="form-control" type="number" placeholder="Enter Tournament ID" />
+                                <select asp-for="TournamentId" asp-items="Model.Tournaments" class="form-select">
+                                    <option value="">-- Select Tournament --</option>
+                                </select>
                                 <span asp-validation-for="TournamentId" class="text-danger"></span>
                             </div>
                             <div class="col-md-4">
                                 <label asp-for="VenueId" class="form-label fw-semibold"></label>
-                                <input asp-for="VenueId" class="form-control" type="number" placeholder="Enter Venue ID" />
+                                <select asp-for="VenueId" asp-items="Model.Venues" class="form-select">
+                                    <option value="">-- Select Venue --</option>
+                                </select>
                                 <span asp-validation-for="VenueId" class="text-danger"></span>
                             </div>
                             <div class="col-md-4">
@@ -107,7 +115,10 @@
                             </div>
                             <div class="col-md-4">
                                 <label asp-for="WinnerId" class="form-label fw-semibold"></label>
-                                <input asp-for="WinnerId" class="form-control" type="number" placeholder="Optional Winner ID" />
+                                <!-- UPDATED: Added id="winnerSelect" and disabled state by default -->
+                                <select asp-for="WinnerId" id="winnerSelect" class="form-select" disabled>
+                                    <option value="">-- Select Winner --</option>
+                                </select>
                                 <span asp-validation-for="WinnerId" class="text-danger"></span>
                             </div>
                         </div>
@@ -130,4 +141,87 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstPlayer = document.getElementById('firstPlayerSelect');
+            const secondPlayer = document.getElementById('secondPlayerSelect');
+            const winnerSelect = document.getElementById('winnerSelect');
+
+            // Store initial winner selection if returning from server validation
+            const initialWinnerValue = "@(Model.WinnerId?.ToString() ?? "")";
+
+            function filterPlayerOptions() {
+                const firstVal = firstPlayer.value;
+                const secondVal = secondPlayer.value;
+
+                // 1. Disable and hide First Player in Second Player dropdown
+                Array.from(secondPlayer.options).forEach(option => {
+                    if (option.value && option.value === firstVal) {
+                        option.disabled = true;
+                        option.hidden = true;
+                    } else {
+                        option.disabled = false;
+                        option.hidden = false;
+                    }
+                });
+
+                // 2. Disable and hide Second Player in First Player dropdown
+                Array.from(firstPlayer.options).forEach(option => {
+                    if (option.value && option.value === secondVal) {
+                        option.disabled = true;
+                        option.hidden = true;
+                    } else {
+                        option.disabled = false;
+                        option.hidden = false;
+                    }
+                });
+
+                updateWinnerOptions(firstVal, secondVal);
+            }
+
+            function updateWinnerOptions(firstVal, secondVal) {
+                const currentWinnerVal = winnerSelect.value || initialWinnerValue;
+
+                // Reset Winner dropdown options
+                winnerSelect.innerHTML = '<option value="">-- Select Winner --</option>';
+
+                if (firstVal && secondVal) {
+                    // Get player display names from selected options
+                    const firstText = firstPlayer.options[firstPlayer.selectedIndex].text;
+                    const secondText = secondPlayer.options[secondPlayer.selectedIndex].text;
+
+                    // Create option for First Player
+                    const opt1 = document.createElement('option');
+                    opt1.value = firstVal;
+                    opt1.textContent = firstText;
+                    winnerSelect.appendChild(opt1);
+
+                    // Create option for Second Player
+                    const opt2 = document.createElement('option');
+                    opt2.value = secondVal;
+                    opt2.textContent = secondText;
+                    winnerSelect.appendChild(opt2);
+
+                    // Enable dropdown
+                    winnerSelect.disabled = false;
+
+                    // Preserve selected winner if still valid
+                    if (currentWinnerVal === firstVal || currentWinnerVal === secondVal) {
+                        winnerSelect.value = currentWinnerVal;
+                    }
+                } else {
+                    // Keep disabled if either player is not selected
+                    winnerSelect.disabled = true;
+                    winnerSelect.value = "";
+                }
+            }
+
+            firstPlayer.addEventListener('change', filterPlayerOptions);
+            secondPlayer.addEventListener('change', filterPlayerOptions);
+
+            // Run on initial page load
+            filterPlayerOptions();
+        });
+    </script>
 }

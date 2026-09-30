@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TennisManagement.Web.Infrastructure.Persistance;
 
@@ -11,9 +12,11 @@ using TennisManagement.Web.Infrastructure.Persistance;
 namespace TennisManagement.Web.Migrations
 {
     [DbContext(typeof(TennisManagementContext))]
-    partial class TennisManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20260930133006_UpdateSeedData")]
+    partial class UpdateSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

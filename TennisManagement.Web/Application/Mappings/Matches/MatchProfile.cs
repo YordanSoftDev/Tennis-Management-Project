@@ -1,8 +1,10 @@
-﻿namespace TennisManagement.Web.Application.Mappings
+﻿namespace TennisManagement.Web.Application.Mappings.Matches
 {
 using AutoMapper;
     using TennisManagement.Web.Models.Matches;
+    using TennisManagement.Web.Models.Roster;
     using TennisManagement.Web.ViewModels.Matches;
+    using TennisManagement.Web.ViewModels.Roster;
 
     public class MatchProfile : Profile
     {
@@ -51,6 +53,11 @@ using AutoMapper;
                 opt => opt
                 .MapFrom(src => src.Winner != null ? $"{src.Winner.FirstName} " +
                 $"{src.Winner.LastName}" : null));
+
+            this.CreateMap<Player, PlayerSelectViewModel>()
+                .ForMember(dest => dest.FullName,
+                opt => opt
+                .MapFrom(src => $"{src.FirstName} {src.LastName}"));
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using TennisManagement.Web.ViewModels.Matches;
+﻿using Microsoft.AspNetCore.Mvc;
+using TennisManagement.Web.ViewModels.Matches;
+using TennisManagement.Web.ViewModels.Roster;
 
-namespace TennisManagement.Web.Application.Interfaces
+namespace TennisManagement.Web.Application.Interfaces.Matches
 {
     public interface IMatchService
     {
@@ -15,6 +17,8 @@ namespace TennisManagement.Web.Application.Interfaces
         public Task<MatchFormViewModel?> GetMatchForEditByIdAsync(int id);
 
         public Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync();
+
+        public Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync();
     }
 }
 

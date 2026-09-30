@@ -1,12 +1,13 @@
-﻿namespace TennisManagement.Web.Application.Services
+﻿namespace TennisManagement.Web.Application.Services.Matches
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
-    using TennisManagement.Web.Application.Interfaces;
+    using TennisManagement.Web.Application.Interfaces.Matches;
     using TennisManagement.Web.Application.Interfaces.Persistance;
     using TennisManagement.Web.Models.Matches;
     using TennisManagement.Web.ViewModels.Matches;
+    using TennisManagement.Web.ViewModels.Roster;
 
     public class SQLMatchService : IMatchService
     {
@@ -73,18 +74,22 @@
 
         public async Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync()
         {
-            IEnumerable<Match> matches = await this.context
-                .Matches
-                .Include(m => m.Venue)
-                .Include(m => m.Tournament)
-                .Include(m => m.FirstPlayer)
-                .Include(m => m.SecondPlayer)
-                .Include(m => m.Winner)
-                .OrderBy(m => m.DateTime)
-                .ThenBy(m => m.Id)
-                .ToListAsync();
+              return await this.context.Matches
+                 .AsNoTracking()
+                 .OrderBy(m => m.DateTime)
+                 .ThenBy(m => m.Id)
+                 .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
+                 .ToListAsync();
+        }
 
-            return this.mapper.Map<IEnumerable<MatchInfoViewModel>>(matches);
+        public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync()
+        {
+            return await this.context.Players
+                .AsNoTracking()
+                .OrderBy(p => p.LastName)
+                .ThenBy(p => p.FirstName)
+                .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
         }
     }
 }

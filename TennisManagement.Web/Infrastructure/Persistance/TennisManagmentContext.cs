@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TennisManagement.Web.Application.Interfaces.Persistance;
 using TennisManagement.Web.Models.Matches;
+using TennisManagement.Web.Models.Roster;
 
 namespace TennisManagement.Web.Infrastructure.Persistance
 {
@@ -12,6 +13,7 @@ namespace TennisManagement.Web.Infrastructure.Persistance
         }
 
         public virtual DbSet<Match> Matches { get; set; } = null!;
+        public virtual DbSet<Player> Players { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

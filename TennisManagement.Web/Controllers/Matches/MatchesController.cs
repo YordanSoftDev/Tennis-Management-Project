@@ -1,7 +1,8 @@
-﻿namespace TennisManagement.Web.Controllers
-{    
+﻿namespace TennisManagement.Web.Controllers.Matches
+{
     using Microsoft.AspNetCore.Mvc;
-    using TennisManagement.Web.Application.Interfaces;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using TennisManagement.Web.Application.Interfaces.Matches;
     using TennisManagement.Web.ViewModels.Matches;
 
     public class MatchesController : Controller
@@ -16,7 +17,8 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<MatchInfoViewModel> matches = await this.service.GetAllMatchesForIndexAsync();
+            IEnumerable<MatchInfoViewModel> matches = await 
+                this.service.GetAllMatchesForIndexAsync();
 
             return this.View(matches);
         }
@@ -24,8 +26,8 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            MatchDetailsViewModel? matchDetails = await this.service.
-                GetMatchDetailsByIdAsync(id);
+            MatchDetailsViewModel? matchDetails = await 
+                this.service.GetMatchDetailsByIdAsync(id);
 
             if(matchDetails == null)
             {
@@ -36,11 +38,21 @@
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            MatchFormViewModel matchForm = new MatchFormViewModel();
+            var players = await this
+                .service.GetPlayersForSelectAsync();
+            var model = new MatchFormViewModel
+            {
+                Players = players
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.FullName
+                })
+            };
 
-            return this.View(matchForm);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -52,7 +64,8 @@
                 return this.View(matchForm);
             }
 
-            int createdMatchId = await this.service.CreateMatchAsync(matchForm);
+            int createdMatchId = await this.service
+                .CreateMatchAsync(matchForm);
 
             return this.RedirectToAction(nameof(Details), 
                 new { id = createdMatchId });
@@ -88,7 +101,8 @@
                 return this.NotFound();
             }
 
-            return this.RedirectToAction(nameof(Details), new { id = id });
+            return this.RedirectToAction(nameof(Details), 
+                new { id = id });
         }
 
         [HttpGet]
