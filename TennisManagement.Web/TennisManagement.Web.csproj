@@ -27,7 +27,7 @@
     <Folder Include="Models\Standings\" />
     <Folder Include="Models\Junctions\" />
     <Folder Include="Models\Officiating\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\matches-button\" />
   </ItemGroup>
 
   <ItemGroup>
