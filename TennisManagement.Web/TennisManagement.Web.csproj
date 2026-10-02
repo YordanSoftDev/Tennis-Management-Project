@@ -27,6 +27,7 @@
     <Folder Include="Models\Standings\" />
     <Folder Include="Models\Junctions\" />
     <Folder Include="Models\Officiating\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

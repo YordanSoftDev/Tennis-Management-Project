@@ -1,31 +1,87 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* 1. Body Canvas (Margin override fixed) */
 body {
-  margin-bottom: 60px;
+    margin-bottom: 0 !important;
+    background-color: #1a2332 !important; /* Dark slate navy canvas */
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control::placeholder {
+    text-align: start;
 }
+
+/* 2. Custom Navbar Styling */
+.navbar-custom {
+    background-color: #0d233a;
+}
+
+.navbar-brand.custom-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00e676 !important;
+    letter-spacing: 0.5px;
+}
+
+.custom-nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+    .custom-nav-link:hover {
+        color: #00e676 !important;
+    }
+
+/* 3. Hero / Main Content Area */
+.main-content-area {
+    background-color: #0d47a1;
+    background-image: linear-gradient(rgba(13, 35, 58, 0.3), rgba(13, 71, 161, 0.45)), url('../images/shutterstock_556666489.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 4. Ultra-Slim White Footer */
+footer.footer {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    padding: 2px 0 !important;
+    line-height: 1.0 !important;
+    font-size: 0.75rem !important;
+    margin-top: 0;
+}
+
+    footer.footer a {
+        color: #0d6efd !important;
+        text-decoration: underline;
+    }
+
+        footer.footer a:hover {
+            color: #0a58ca !important;
+        }
