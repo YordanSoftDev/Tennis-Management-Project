@@ -13,21 +13,7 @@
             builder.Property(m => m.DateTime)
                 .IsRequired(true);
 
-            builder.Property(m => m.CourtName)
-                .IsRequired(true)
-                .HasMaxLength(100);
-
             builder.Property(m => m.CourtType)
-                .IsRequired(true)
-                .HasConversion<string>()
-                .HasMaxLength(20);
-
-            builder.Property(m => m.MatchFormat)
-                .IsRequired(true)
-                .HasConversion<string>()
-                .HasMaxLength(20);
-
-            builder.Property(m => m.MatchKind)
                 .IsRequired(true)
                 .HasConversion<string>()
                 .HasMaxLength(20);

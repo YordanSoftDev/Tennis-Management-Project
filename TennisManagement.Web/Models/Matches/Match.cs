@@ -10,16 +10,8 @@ namespace TennisManagement.Web.Models.Matches
 
         public DateTime DateTime { get; set; }
 
-        public required string CourtName { get; set; }
-
         //The variants are Grass, Clay, Hard and Carpet
         public required CourtType CourtType { get; set; }
-
-        //The variants are Singles, Doubles, Mixed
-        public required MatchFormat MatchFormat { get; set; }
-
-        //The variants are Frendly or Official
-        public required MatchKind MatchKind { get; set; }
 
         public string? ScoreResult { get; set; }
 

@@ -8,13 +8,7 @@ namespace TennisManagement.Web.ViewModels.Matches
 
         public DateTime DateTime { get; set; }
 
-        public string CourtName { get; set; } = string.Empty;
-
         public CourtType CourtType { get; set; }
-
-        public MatchFormat MatchFormat { get; set; }
-
-        public MatchKind MatchKind { get; set; }
 
         public string? ScoreResult { get; set; }
 

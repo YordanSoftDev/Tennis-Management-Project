@@ -12,30 +12,11 @@ namespace TennisManagement.Web.ViewModels.Matches
         [Display(Name = "Date Time")]
         public DateTime? DateTime { get; set; }
 
-        [Required(ErrorMessage = "Court name is required.")]
-        [RegularExpression(@"^[A-Z0-9][a-zA-Z0-9]*(?:[\s-][A-Z0-9][a-zA-Z0-9]*)*$",
-         ErrorMessage = "Each word must start with a capital letter or a number" +
-                        "separated by a single space or a hyphen.")]
-        [Display(Name = "Court Name")]
-        public string? CourtName { get; set; }
-
         [Required(ErrorMessage = "Court type is required.")]
         [EnumDataType(typeof(CourtType), 
             ErrorMessage = "Please select a valid option.")]
         [Display(Name = "Court Type")]
         public CourtType? CourtType { get; set; }
-
-        [Required(ErrorMessage = "Match format is required.")]
-        [EnumDataType(typeof(MatchFormat),
-            ErrorMessage = "Please select a valid option.")]
-        [Display(Name = "Match Format")]
-        public MatchFormat? MatchFormat { get; set; }
-
-        [Required(ErrorMessage = "Match kind is required.")]
-        [EnumDataType(typeof(MatchKind),
-            ErrorMessage = "Please select a valid option.")]
-        [Display(Name = "Match Kind")]
-        public MatchKind? MatchKind { get; set; }
 
         [Display(Name = "Score Result")]
         public string? ScoreResult { get; set; }

@@ -2,3 +2,40 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section MainStyle {
+    <style>
+        .home-bg {
+            background-image: linear-gradient(rgba(13, 35, 58, 0.45), 
+            rgba(13, 71, 161, 0.6)), 
+            url('/images/home-button/home.jpg') !important;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    </style>
+}
+
+<div class="home-bg d-flex align-items-center justify-content-center text-center">
+    <div class="container text-white py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold mb-3">Tennis Management</h1>
+                <p class="lead mb-4 fs-4">
+                    Organize matches, track tournament results, and manage venues seamlessly.
+                </p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a asp-controller="Matches" asp-action="Index" class="btn btn-primary btn-lg px-4 gap-3 shadow-sm">
+                        <i class="bi bi-trophy me-2"></i>View Matches
+                    </a>
+                    <a asp-controller="Matches" asp-action="Create" class="btn btn-outline-light btn-lg px-4 shadow-sm">
+                        <i class="bi bi-plus-circle me-2"></i>Create Match
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

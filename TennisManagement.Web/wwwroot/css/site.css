@@ -1,7 +1,6 @@
 html {
     font-size: 14px;
-    position: relative;
-    min-height: 100%;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -16,7 +15,8 @@ html {
 
 /* 1. Body Canvas (Margin override fixed) */
 body {
-    margin-bottom: 0 !important;
+    height: 100%;
+    margin: 0 !important;
     background-color: #1a2332 !important; /* Dark slate navy canvas */
 }
 
@@ -52,14 +52,16 @@ body {
         color: #00e676 !important;
     }
 
-/* 3. Hero / Main Content Area */
+/* 3. Main Content Area */
 .main-content-area {
     background-color: #0d47a1;
-    background-image: linear-gradient(rgba(13, 35, 58, 0.3), rgba(13, 71, 161, 0.45)), url('../images/shutterstock_556666489.jpg');
+    background-image: linear-gradient(rgba(13, 35, 58, 0.3), 
+                      rgba(13, 71, 161, 0.45)), 
+                      url('../images/home-button/home.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 420px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,3 +87,50 @@ footer.footer {
         footer.footer a:hover {
             color: #0a58ca !important;
         }
+
+
+/* Form Card Dark Glassmorphism Styling */
+.create-match-card {
+    background: rgba(13, 35, 58, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.section-header {
+    color: #64b5f6;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 6px;
+}
+/* Dark Modern Form Controls */
+.form-control-dark, .form-select-dark {
+    background-color: rgba(10, 25, 41, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .form-control-dark:focus, .form-select-dark:focus {
+        background-color: rgba(10, 25, 41, 0.95);
+        border-color: #2196f3;
+        box-shadow: 0 0 0 0.25rem rgba(33, 150, 243, 0.25);
+        color: #ffffff;
+    }
+
+    .form-control-dark::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+.form-label-custom {
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}

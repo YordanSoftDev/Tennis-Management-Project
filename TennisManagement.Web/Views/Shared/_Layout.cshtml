@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TennisManagement.Web.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("MainStyle", required: false)
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand custom-brand" asp-area="" asp-controller="Home" asp-action="Index">Tennis Management</a>
 
@@ -31,9 +32,6 @@
                         <li class="nav-item">
                             <a class="nav-link custom-nav-link" asp-area="" asp-controller="Matches" asp-action="Index">Matches</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -41,17 +39,10 @@
     </header>
 
     <!-- Main Content Area centered in a narrower grid column -->
-    <div class="container flex-grow-1">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-8">
                 <main role="main" 
-                    class="main-content-area text-white p-5 rounded-3 shadow">
-                    style="@RenderSection("MainStyle", required: false)">
+                    class="flex-grow-1 d-flex flex-column">
                     @RenderBody()
                 </main>
-            </div>
-        </div>
-    </div>
 
     <!-- Slim Footer -->
     <footer class="border-top footer bg-white text-dark py-1 mt-auto">

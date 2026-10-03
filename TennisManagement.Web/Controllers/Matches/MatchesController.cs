@@ -4,6 +4,8 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using TennisManagement.Web.Application.Interfaces.Matches;
     using TennisManagement.Web.ViewModels.Matches;
+    using TennisManagement.Web.Models.Matches.MatchEnumerations;
+
 
     public class MatchesController : Controller
     {
@@ -59,7 +61,24 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MatchFormViewModel matchForm)
         {
-            if(!this.ModelState.IsValid)
+            bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
+
+            if(isCompleted && !matchForm.WinnerId.HasValue)
+            {
+                this.ModelState.AddModelError(nameof(matchForm.WinnerId),
+                    "A winner must be selected when " +
+                    "the match status is Completed.");
+            }
+
+            if (!isCompleted && matchForm.WinnerId.HasValue)
+            {
+                this.ModelState.AddModelError(nameof(matchForm.WinnerId),
+                    "A winner can only be assigned " +
+                    "if the match status is Completed.");
+            }
+
+
+            if (!this.ModelState.IsValid)
             {
                 return this.View(matchForm);
             }
