@@ -21,7 +21,7 @@
             builder.Property(m => m.ScoreResult)
                 .HasMaxLength(100);
 
-            builder.Property(m => m.DurationMinutes);
+            builder.Property(m => m.CourtName);
 
             builder.Property(m => m.MatchStatus)
                 .IsRequired(true)

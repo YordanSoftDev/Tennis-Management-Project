@@ -108,7 +108,21 @@
         [ValidateAntiForgeryToken]      
         public async Task<IActionResult> Edit(int id, MatchFormViewModel matchForm)
         {
-            if(!this.ModelState.IsValid)
+            bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
+
+            if (isCompleted && !matchForm.WinnerId.HasValue)
+            {
+                this.ModelState.AddModelError(nameof(matchForm.WinnerId),
+                    "A winner must be selected when the match status is Completed.");
+            }
+
+            if (!isCompleted && matchForm.WinnerId.HasValue)
+            {
+                this.ModelState.AddModelError(nameof(matchForm.WinnerId),
+                    "A winner can only be assigned if the match status is Completed.");
+            }
+
+            if (!this.ModelState.IsValid)
             {
                 return this.View(matchForm);
             }

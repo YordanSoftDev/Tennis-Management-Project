@@ -6,15 +6,21 @@ namespace TennisManagement.Web.ViewModels.Matches
     {
         public int Id { get; set; }
 
+        public int FirstPlayerId { get; set; }
+
+        public string FirstPlayerFullName { get; set; } = string.Empty;
+
+        public int SecondPlayerId { get; set; }
+
+        public string SecondPlayerFullName { get; set; } = string.Empty;
+
         public DateTime DateTime { get; set; }
+
+        public MatchStatus MatchStatus { get; set; }
 
         public CourtType CourtType { get; set; }
 
-        public string? ScoreResult { get; set; }
-
-        public int? DurationMinutes { get; set; }
-
-        public MatchStatus MatchStatus { get; set; } 
+        public string CourtName { get; set; } = string.Empty;
 
         public int VenueId { get; set; }
 
@@ -24,14 +30,8 @@ namespace TennisManagement.Web.ViewModels.Matches
 
         public string TournamentName { get; set; } = string.Empty;
 
-        public int FirstPlayerId { get; set; } 
-
-        public string FirstPlayerFullName { get; set; } = string.Empty;
-
-        public int SecondPlayerId { get; set; } 
-
-        public string SecondPlayerFullName { get; set; } = string.Empty;
-
+        public string? ScoreResult { get; set; }
+        
         public int? WinnerId { get; set; } 
 
         public string? WinnerFullName { get; set; }
