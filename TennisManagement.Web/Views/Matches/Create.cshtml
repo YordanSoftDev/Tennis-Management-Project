@@ -103,7 +103,7 @@
                         <div class="row g-2 mb-2">
                             <div class="col-md-6">
                                 <label asp-for="DateTime" class="form-label-xs fw-semibold"></label>
-                                <input asp-for="DateTime" class="form-control form-control-xs" type="datetime-local" />
+                                <input asp-for="DateTime" class="form-control form-control-xs" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"/>
                                 <span asp-validation-for="DateTime" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
@@ -261,5 +261,4 @@
             filterPlayerOptions();
         });
     </script>
-}
 }

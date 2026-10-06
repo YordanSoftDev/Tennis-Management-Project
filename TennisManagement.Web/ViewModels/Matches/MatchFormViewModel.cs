@@ -7,15 +7,19 @@ namespace TennisManagement.Web.ViewModels.Matches
 {
     public class MatchFormViewModel
     {
-        [Required(ErrorMessage = "First Player Id is required.")]
+        [Required(ErrorMessage = "First Player is required.")]
+        [Range(1, 80)]
         [Display(Name = "First Player")]
         public int? FirstPlayerId { get; set; }
 
-
-        [Required(ErrorMessage = "Second Player Id is required.")]
+        [Required(ErrorMessage = "Second Player is required.")]
         [Display(Name = "Second Player")]
         public int? SecondPlayerId { get; set; }
 
+        //When the user selects First Player from the dropdown menu, 
+        //the player's name is removed automatically so that the Second Player
+        //list does not already contain the name. The same applies
+        //in the opposite direction (Second Player => First Player)
         public IEnumerable<SelectListItem> Players { get; set; } =
                     new List<SelectListItem>();
 
@@ -39,12 +43,12 @@ namespace TennisManagement.Web.ViewModels.Matches
         [Display(Name = "Court Type")]
         public CourtType? CourtType { get; set; }
 
-
+        [Required(ErrorMessage = "Court name is required.")]
         [Display(Name = "Court Name")]
         public string? CourtName { get; set; }
 
 
-        [Required(ErrorMessage = "Venue Id is required.")]
+        [Required(ErrorMessage = "Venue is required.")]
         [Display(Name = "Venue")]
         public int? VenueId { get; set; }
 
@@ -52,7 +56,7 @@ namespace TennisManagement.Web.ViewModels.Matches
             new List<SelectListItem>();
 
 
-        [Required(ErrorMessage = "Tournament Id is required.")]
+        [Required(ErrorMessage = "Tournament is required.")]
         [Display(Name = "Tournament")]
         public int? TournamentId { get; set; }
 

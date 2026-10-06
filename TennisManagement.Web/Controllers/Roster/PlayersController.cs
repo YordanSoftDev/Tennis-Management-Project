@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using TennisManagement.Web.Application.Interfaces.Roster;
-    using TennisManagement.Web.ViewModels.Matches;
     using TennisManagement.Web.ViewModels.Roster;
 
     public class PlayersController : Controller
