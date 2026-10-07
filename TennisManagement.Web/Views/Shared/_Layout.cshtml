@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/TennisManagement.Web.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("MainStyle", required: false)
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 text-white">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom border-bottom box-shadow">
             <div class="container-fluid">
@@ -33,7 +33,7 @@
                             <a class="nav-link custom-nav-link" asp-area="" asp-controller="Matches" asp-action="Index">Matches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Players" asp-action="Index">Players Roster</a>
+                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Players" asp-action="Index">Players</a>
                         </li>
                     </ul>
                 </div>

@@ -10,6 +10,7 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddAutoMapper(cfg =>
     cfg.AddMaps(typeof(SQLMatchService).Assembly));
 

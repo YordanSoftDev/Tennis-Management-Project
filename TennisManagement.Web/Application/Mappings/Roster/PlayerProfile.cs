@@ -13,13 +13,17 @@
 
             this.CreateMap<Player, PlayerDetailsViewModel>()
                 .ForMember(dest => dest.FullName, opt => opt
-                .MapFrom(src => $"{src.FirstName} {src.LastName}"));
+                .MapFrom(src => $"{src.FirstName} {src.LastName}"))
+                .ForMember(dest => dest.Country, opt => opt
+                .MapFrom(src => src.Country.Name));
 
             this.CreateMap<Player, PlayerInfoViewModel>()
                 .ForMember(dest => dest.FullName, opt => opt
                 .MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForMember(dest => dest.Country, opt => opt
                 .MapFrom(src => src.Country.Name));
+
+
         }
     }
 }

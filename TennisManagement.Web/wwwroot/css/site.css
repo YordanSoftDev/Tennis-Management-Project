@@ -17,7 +17,7 @@ html {
 body {
     height: 100%;
     margin: 0 !important;
-    background-color: #1a2332 !important; /* Dark slate navy canvas */
+    background-color: #ffffff !important;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -55,9 +55,7 @@ body {
 /* 3. Main Content Area */
 .main-content-area {
     background-color: #0d47a1;
-    background-image: linear-gradient(rgba(13, 35, 58, 0.3), 
-                      rgba(13, 71, 161, 0.45)), 
-                      url('../images/home-button/home.jpg');
+    background-image: linear-gradient(rgba(13, 35, 58, 0.3), rgba(13, 71, 161, 0.45)), url('../images/home-button/home.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -88,7 +86,6 @@ footer.footer {
             color: #0a58ca !important;
         }
 
-
 /* Form Card Dark Glassmorphism Styling */
 .create-match-card {
     background: rgba(13, 35, 58, 0.85);
@@ -107,6 +104,7 @@ footer.footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding-bottom: 6px;
 }
+
 /* Dark Modern Form Controls */
 .form-control-dark, .form-select-dark {
     background-color: rgba(10, 25, 41, 0.7);

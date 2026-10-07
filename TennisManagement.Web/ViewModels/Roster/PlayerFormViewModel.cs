@@ -13,7 +13,7 @@ namespace TennisManagement.Web.ViewModels.Roster
                         "followed by one or more lowercase letters.")]
         public string? FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a First Name.")]
+        [Required(ErrorMessage = "Please enter a Last Name.")]
         [StringLength(20, MinimumLength = 2)]
         [RegularExpression(@"^[A-Z][a-z]+$",
          ErrorMessage = "Last name must start with an uppercase letter " +
