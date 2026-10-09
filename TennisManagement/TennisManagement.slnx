@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="TennisManagement.Common/TennisManagement.Common.csproj" Id="591981d3-4c87-4739-9525-be4943793056" />
+  <Project Path="TennisManagement.Data.Models/TennisManagement.Data.Models.csproj" Id="637ef4ce-395e-4546-867e-88fc0c6697c5" />
+  <Project Path="TennisManagement.Data/TennisManagement.Data.csproj" Id="621d39cc-ca37-49df-b1b2-ba0549846b59" />
+  <Project Path="TennisManagement.Services.Core/TennisManagement.Services.Core.csproj" Id="b84cfb3f-89f8-42d4-8983-697bbb83f404" />
+  <Project Path="TennisManagement.ViewModels/TennisManagement.ViewModels.csproj" Id="27a450c0-ac7d-437b-a9c6-dba1396958b2" />
+  <Project Path="TennisManagement.Web/TennisManagement.Web.csproj" />
+</Solution>

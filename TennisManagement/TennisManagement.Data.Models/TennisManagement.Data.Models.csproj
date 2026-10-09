@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commercial\" />
+    <Folder Include="Junctions\" />
+    <Folder Include="Officiating\" />
+    <Folder Include="Standings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TennisManagement.Common\TennisManagement.Common.csproj" />
+  </ItemGroup>
+
+</Project>

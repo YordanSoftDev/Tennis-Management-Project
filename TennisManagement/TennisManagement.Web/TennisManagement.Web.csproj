@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Extensions\**" />
+    <Compile Remove="Application\NewFolder - Copy %285%29\**" />
+    <Compile Remove="Application\NewFolder - Copy %286%29\**" />
+    <Content Remove="Application\Extensions\**" />
+    <Content Remove="Application\NewFolder - Copy %285%29\**" />
+    <Content Remove="Application\NewFolder - Copy %286%29\**" />
+    <EmbeddedResource Remove="Application\Extensions\**" />
+    <EmbeddedResource Remove="Application\NewFolder - Copy %285%29\**" />
+    <EmbeddedResource Remove="Application\NewFolder - Copy %286%29\**" />
+    <None Remove="Application\Extensions\**" />
+    <None Remove="Application\NewFolder - Copy %285%29\**" />
+    <None Remove="Application\NewFolder - Copy %286%29\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Validations\" />
+    <Folder Include="wwwroot\images\matches-button\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="11.0.0-preview.1.26230.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TennisManagement.Data.Models\TennisManagement.Data.Models.csproj" />
+    <ProjectReference Include="..\TennisManagement.Data\TennisManagement.Data.csproj" />
+    <ProjectReference Include="..\TennisManagement.Services.Core\TennisManagement.Services.Core.csproj" />
+    <ProjectReference Include="..\TennisManagement.ViewModels\TennisManagement.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

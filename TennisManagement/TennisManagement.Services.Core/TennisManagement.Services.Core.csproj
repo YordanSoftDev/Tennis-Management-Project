@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Mappings\Roster\CoachProfile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Mappings\Roster\CoachProfile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="6.0.36" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TennisManagement.Data.Models\TennisManagement.Data.Models.csproj" />
+    <ProjectReference Include="..\TennisManagement.Data\TennisManagement.Data.csproj" />
+    <ProjectReference Include="..\TennisManagement.ViewModels\TennisManagement.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
